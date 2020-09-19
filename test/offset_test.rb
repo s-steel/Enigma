@@ -16,4 +16,14 @@ class OffsetTest < Minitest::Test
 
     assert_equal [6, 4, 0, 0], offset.offset_digits_from_date
   end
+
+  def test_offset_hash
+    offset = Offset.new
+
+    expected = {:a => 6,
+                :b => 4,
+                :c => 0,
+                :d => 0}
+    assert_equal expected, offset.offset_hash
+  end
 end
