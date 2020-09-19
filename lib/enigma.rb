@@ -1,4 +1,4 @@
-require_relative 'key'
+require_relative 'shift'
 require 'pry'
 
 class Enigma
