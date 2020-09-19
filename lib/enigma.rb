@@ -17,4 +17,13 @@ class Enigma
     encryption[:date] = date
     encryption
   end
+
+  def decrypt(message, key, date)
+    @shift = Shift.new(message, key, date)
+    decryption = Hash.new
+    decryption[:decryption] = @shift.decrypt_message
+    decryption[:key] = key
+    decryption[:date] = date
+    decryption
+  end
 end
