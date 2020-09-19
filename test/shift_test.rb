@@ -46,8 +46,16 @@ class ShiftTest < Minitest::Test
 
   def test_shift_message
     shift = Shift.new('Hello World', '02715', '040895')
-
     assert_equal 'keder ohulw', shift.shift_message
+
+    shift_2 = Shift.new('Hello World!', '02715', '040895')
+    assert_equal 'keder ohulw!', shift_2.shift_message
+
+    shift_3 = Shift.new('Hello Space', '01020', '010203')
+    assert_equal 'jqnnqlurcog', shift_3.shift_message
+
+    shift_4 = Shift.new('? : # * }', '01020', '010203')
+    assert_equal '?l:b#l*b}', shift_4.shift_message
   end
 
   def test_index_a_shift

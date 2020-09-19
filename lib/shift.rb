@@ -3,7 +3,7 @@ require_relative 'offset'
 require 'pry'
 
 class Shift
-  attr_reader :message, :key, :date
+  attr_reader :message, :key, :date, :characters
   def initialize(message,
                  key = Key.new.key,
                  date = Offset.new.offset)
@@ -27,24 +27,26 @@ class Shift
   end
 
   def shift_message
-    array = []
+    encrypt_array = []
     index = 0
     @message.downcase.each_char do |character|
-      if index == 0
-        array << a_shift(character)
+      if @characters.include?(character) == false
+        encrypt_array << character
+      elsif index == 0
+        encrypt_array << a_shift(character)
       elsif index == 1
-        array << b_shift(character)
+        encrypt_array << b_shift(character)
       elsif index == 2
-        array << c_shift(character)
+        encrypt_array << c_shift(character)
       elsif index == 3
-        array << d_shift(character)
+        encrypt_array << d_shift(character)
       else
         character
       end
       index += 1
       index = 0 if index > 3
     end
-    array.join
+    encrypt_array.join
   end
 
   def a_shift(character)
