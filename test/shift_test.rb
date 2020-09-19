@@ -15,10 +15,23 @@ class ShiftTest < Minitest::Test
     shift_2 = Shift.new('Hello World')
     shift_2.stubs(:key).returns('key string')
     shift_2.stubs(:date).returns('date string')
-    
+
     assert_equal 'Hello World', shift_2.string
     assert_equal 'key string', shift_2.key
     assert_equal 'date string', shift_2.date
+  end
+
+  def test_convert_date
+    shift = Shift.new('Hello World', '02715', '040895')
+
+    assert_equal '1025', shift.convert_date
+  end
+
+  def test_create_key_hash
+    shift = Shift.new('Hello World', '02715', '040895')
+
+    # expected = {:a => }
+    assert_equal [], shift.total_shift_amount
   end
 
   # def test_key
