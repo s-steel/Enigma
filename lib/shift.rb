@@ -3,11 +3,11 @@ require_relative 'offset'
 require 'pry'
 
 class Shift
-  attr_reader :string, :key, :date
-  def initialize(string,
+  attr_reader :message, :key, :date
+  def initialize(message,
                  key = Key.new.key,
                  date = Offset.new.offset)
-    @string = string
+    @message = message
     @key = key
     @date = date
     # @characters =
@@ -22,5 +22,9 @@ class Shift
                   :b => @key[1..2].to_i + convert_date[1].to_i,
                   :c => @key[2..3].to_i + convert_date[2].to_i,
                   :d => @key[3..4].to_i + convert_date[3].to_i}
+  end
+
+  def shift_message
+
   end
 end

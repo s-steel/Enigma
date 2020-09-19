@@ -8,7 +8,7 @@ class ShiftTest < Minitest::Test
     shift = Shift.new('Hello World', '02715', '040895')
 
     assert_instance_of Shift, shift
-    assert_equal 'Hello World', shift.string
+    assert_equal 'Hello World', shift.message
     assert_equal '02715', shift.key
     assert_equal '040895', shift.date
 
@@ -16,7 +16,7 @@ class ShiftTest < Minitest::Test
     shift_2.stubs(:key).returns('key string')
     shift_2.stubs(:date).returns('date string')
 
-    assert_equal 'Hello World', shift_2.string
+    assert_equal 'Hello World', shift_2.message
     assert_equal 'key string', shift_2.key
     assert_equal 'date string', shift_2.date
   end
@@ -35,12 +35,18 @@ class ShiftTest < Minitest::Test
                 :d => 20}
     assert_equal expected, shift.total_shift_amount
 
-    shift_2 = Shift.new('Hello World', '95341', '093765')
+    shift_2 = Shift.new('Hello Space', '95341', '093765')
     expected_2 = {:a => 100,
-                :b => 55,
-                :c => 36,
-                :d => 46}
+                  :b => 55,
+                  :c => 36,
+                  :d => 46}
 
     assert_equal expected_2, shift_2.total_shift_amount
+  end
+
+  def test_shift_message
+    shift = Shift.new('Hello World', '02715', '040895')
+
+    assert_equal 'keder ohulw', shift.shift_message
   end
 end
