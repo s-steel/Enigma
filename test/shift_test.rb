@@ -8,5 +8,11 @@ class ShiftTest < Minitest::Test
     shift = Shift.new
 
     assert_instance_of Shift, shift
-  end 
+  end
+
+  def test_keys
+    shift = Shift.new
+
+    assert_equal [], shift.pull_key
+  end
 end

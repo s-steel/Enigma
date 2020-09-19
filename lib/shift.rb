@@ -4,7 +4,11 @@ require_relative 'offset'
 class Shift
   attr_reader :key, :offset
   def initialize
-    @key = key
-    @offset = offset
+    @key = Key.new
+    @offset = Offset.new
+  end
+
+  def pull_key
+    @key.hash_of_keys
   end
 end
