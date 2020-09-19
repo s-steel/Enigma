@@ -28,14 +28,23 @@ class Shift
 
   def shift_message
     array = []
+    index = 0
     @message.downcase.each_char do |character|
-      shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:a]))]
-        # shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:b]))]
-        # shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:c]))]
-        # shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:d]))]
-      array << shift_hash[character]
+      if index == 0
+        array << a_shift(character)
+      elsif index == 1
+        array << b_shift(character)
+      elsif index == 2
+        array << c_shift(character)
+      elsif index == 3
+        array << d_shift(character)
+      else
+        character
+      end
+      index += 1
+      index = 0 if index > 3
     end
-    array
+    array.join
   end
 
   def a_shift(character)
