@@ -11,4 +11,6 @@ class Offset
     Date.today.strftime('%d%m%y').to_i
   end
 
+
+
 end

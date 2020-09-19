@@ -8,6 +8,12 @@ class OffsetTest < Minitest::Test
     offset = Offset.new
 
     assert_instance_of Offset, offset
-    assert_equal 190920, offset.date 
+    assert_equal 190920, offset.date
+  end
+
+  def test_create_offset_digits_from_date
+    offset = Offset.new
+
+    assert_equal 0, offest.offet_digits_from_date 
   end
 end
