@@ -18,10 +18,10 @@ class Shift
   end
 
   def total_shift_amount
-    shift_hash = {:a => @key[0..1].to_i + @date[0].to_i,
-                  :b => @key[1..2].to_i + @date[1].to_i,
-                  :c => @key[2..3].to_i + @date[2].to_i,
-                  :d => @key[3..4].to_i + @date[3].to_i}
+    shift_hash = {:a => @key[0..1].to_i + convert_date[0].to_i,
+                  :b => @key[1..2].to_i + convert_date[1].to_i,
+                  :c => @key[2..3].to_i + convert_date[2].to_i,
+                  :d => @key[3..4].to_i + convert_date[3].to_i}
   end
   # def total_shift_amount
   #   @key.merge(@offset) do |letter, key, offset|

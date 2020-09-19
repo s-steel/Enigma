@@ -27,11 +27,14 @@ class ShiftTest < Minitest::Test
     assert_equal '1025', shift.convert_date
   end
 
-  def test_create_key_hash
+  def test_total_shift_amount
     shift = Shift.new('Hello World', '02715', '040895')
 
-    # expected = {:a => }
-    assert_equal [], shift.total_shift_amount
+    expected = {:a => 3,
+                :b => 27,
+                :c => 73,
+                :d => 20}
+    assert_equal expected, shift.total_shift_amount
   end
 
   # def test_key
