@@ -12,7 +12,7 @@ class KeyTest < Minitest::Test
 
   def test_random_five_digits
     key = Key.new
-
-    assert_equal [], key.random_five_digits
+    key.stubs(:random_five_digits).returns('Random digits')
+    assert_equal 'Random digits', key.random_five_digits
   end
 end
