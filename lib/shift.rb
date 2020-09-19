@@ -42,4 +42,19 @@ class Shift
     shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:a]))]
     shift_hash[character]
   end
+
+  def b_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:b]))]
+    shift_hash[character]
+  end
+
+  def c_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:c]))]
+    shift_hash[character]
+  end
+
+  def d_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:d]))]
+    shift_hash[character]
+  end
 end

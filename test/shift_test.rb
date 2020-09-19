@@ -50,9 +50,27 @@ class ShiftTest < Minitest::Test
     assert_equal 'keder ohulw', shift.shift_message
   end
 
-  def test_index_shifts
+  def test_index_a_shift
     shift = Shift.new('Hello World', '02715', '040895')
 
     assert_equal 'k', shift.a_shift('h')
+  end
+
+  def test_index_b_shift
+    shift = Shift.new('Hello World', '02715', '040895')
+
+    assert_equal 'e', shift.b_shift('e')
+  end
+
+  def test_index_c_shift
+    shift = Shift.new('Hello World', '02715', '040895')
+
+    assert_equal 'd', shift.c_shift('l')
+  end
+
+  def test_index_d_shift
+    shift = Shift.new('Hello World', '02715', '040895')
+
+    assert_equal 'e', shift.d_shift('l')
   end
 end
