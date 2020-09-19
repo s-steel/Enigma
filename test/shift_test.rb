@@ -83,40 +83,40 @@ class ShiftTest < Minitest::Test
   end
 
   def test_decrypt_message
-    shift = Shift.new('Hello World', '02715', '040895')
-    assert_equal 'keder ohulw', shift.decrypt_message
+    shift = Shift.new('keder ohulw', '02715', '040895')
+    assert_equal 'hello world', shift.decrypt_message
 
-    shift_2 = Shift.new('Hello World!', '02715', '040895')
-    assert_equal 'keder ohulw!', shift_2.decrypt_message
+    shift_2 = Shift.new('keder ohulw!', '02715', '040895')
+    assert_equal 'hello world!', shift_2.decrypt_message
 
-    shift_3 = Shift.new('Hello Space', '01020', '010203')
-    assert_equal 'jqnnqlurcog', shift_3.decrypt_message
-
-    shift_4 = Shift.new('? : # * }', '01020', '010203')
-    assert_equal '?l:b#l*b}', shift_4.decrypt_message
+    # shift_3 = Shift.new('Hello Space', '01020', '010203')
+    # assert_equal 'jqnnqlurcog', shift_3.decrypt_message
+    #
+    # shift_4 = Shift.new('? : # * }', '01020', '010203')
+    # assert_equal '?l:b#l*b}', shift_4.decrypt_message
   end
 
   def test_decrypt_a_shift
-    shift = Shift.new('Hello World', '02715', '040895')
+    shift = Shift.new('keder ohulw', '02715', '040895')
 
-    assert_equal 'k', shift.decrypt_a_shift('h')
+    assert_equal 'h', shift.decrypt_a_shift('k')
   end
 
   def test_decrypt_b_shift
-    shift = Shift.new('Hello World', '02715', '040895')
+    shift = Shift.new('keder ohulw', '02715', '040895')
 
     assert_equal 'e', shift.decrypt_b_shift('e')
   end
 
   def test_decrypt_c_shift
-    shift = Shift.new('Hello World', '02715', '040895')
+    shift = Shift.new('keder ohulw', '02715', '040895')
 
-    assert_equal 'd', shift.decrypt_c_shift('l')
+    assert_equal 'l', shift.decrypt_c_shift('d')
   end
 
   def test_decrypt_d_shift
-    shift = Shift.new('Hello World', '02715', '040895')
+    shift = Shift.new('keder ohulw', '02715', '040895')
 
-    assert_equal 'e', shift.decrypt_d_shift('l')
+    assert_equal 'l', shift.decrypt_d_shift('e')
   end
 end

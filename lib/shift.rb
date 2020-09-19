@@ -68,4 +68,47 @@ class Shift
     shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:d]))]
     shift_hash[character]
   end
+
+  def decrypt_message
+    decrypt_array = []
+    index = 0
+    @message.downcase.each_char do |character|
+      if @characters.include?(character) == false
+        decrypt_array << character
+      elsif index == 0
+        decrypt_array << decrypt_a_shift(character)
+      elsif index == 1
+        decrypt_array << decrypt_b_shift(character)
+      elsif index == 2
+        decrypt_array << decrypt_c_shift(character)
+      elsif index == 3
+        decrypt_array << decrypt_d_shift(character)
+      else
+        character
+      end
+      index += 1
+      index = 0 if index > 3
+    end
+    decrypt_array.join
+  end
+
+  def decrypt_a_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:a]))]
+    shift_hash[character]
+  end
+
+  def decrypt_b_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:b]))]
+    shift_hash[character]
+  end
+
+  def decrypt_c_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:c]))]
+    shift_hash[character]
+  end
+
+  def decrypt_d_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:d]))]
+    shift_hash[character]
+  end
 end
