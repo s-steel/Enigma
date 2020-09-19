@@ -3,7 +3,7 @@ require 'pry'
 class Offset
   attr_reader :offset
   def initialize#(offset = calc)
-    @offset = offset
+    @offset = offset_digits_from_date
   end
 
   def date

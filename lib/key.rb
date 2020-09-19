@@ -1,7 +1,7 @@
 class Key
   attr_reader :key
   def initialize
-    @key = key
+    @key = random_five_digits
   end
 
   def random_five_digits
