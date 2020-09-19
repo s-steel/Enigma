@@ -7,7 +7,7 @@ class Key
   end
   # ^^ returns array of digits
 
-  def split_up_keys
+  def hash_of_keys
     key_hash = {a: random_five_digits[0..1].join.to_i,
                 b: random_five_digits[1..2].join.to_i,
                 c: random_five_digits[2..3].join.to_i,

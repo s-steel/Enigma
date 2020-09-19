@@ -12,22 +12,23 @@ class KeyTest < Minitest::Test
 
   def test_random_five_digits
     key = Key.new
-    key.stubs(:random_five_digits).returns([1, 2, 3, 4, 5])
-    assert_equal [1, 2, 3, 4, 5], key.random_five_digits
+    array_keys = mock('random array of keys')
+    key.stubs(:random_five_digits).returns([array_keys])
+    assert_equal [array_keys], key.random_five_digits
   end
 
-  def test_split_up_keys
+  def test_hash_of_keys
     key = Key.new
-    random_1 = mock('1')
-    random_2 = mock('2')
-    random_3 = mock('3')
-    random_4 = mock('4')
-    expected = {:a => random_1,
-                :b => random_2,
-                :c => random_3,
-                :d => random_4}
-    key.stubs(:split_up_keys).returns(expected)
+    mock_expected = {:a => 1,
+                     :b => 2,
+                     :c => 3,
+                     :d => 4}
+    key.stubs(:hash_of_keys).returns(mock_expected)
+    expected = {:a => 1,
+                :b => 2,
+                :c => 3,
+                :d => 4}
 
-    assert_equal expected, key.split_up_keys
+    assert_equal expected, key.hash_of_keys
   end
 end

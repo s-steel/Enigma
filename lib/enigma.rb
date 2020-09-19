@@ -1,3 +1,4 @@
+require_relative 'key'
 require 'pry'
 
 class Enigma
