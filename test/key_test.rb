@@ -9,4 +9,10 @@ class KeyTest < Minitest::Test
 
     assert_instance_of Key, key
   end
-end 
+
+  def test_random_five_digits
+    key = Key.new
+
+    assert_equal [], key.random_five_digits
+  end
+end
