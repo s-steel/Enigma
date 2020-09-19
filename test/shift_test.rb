@@ -49,4 +49,10 @@ class ShiftTest < Minitest::Test
 
     assert_equal 'keder ohulw', shift.shift_message
   end
+
+  def test_index_shifts
+    shift = Shift.new('Hello World', '02715', '040895')
+
+    assert_equal 'k', shift.a_shift('h')
+  end
 end

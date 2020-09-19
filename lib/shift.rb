@@ -10,7 +10,9 @@ class Shift
     @message = message
     @key = key
     @date = date
-    # @characters =
+    @characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+                   'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+                   'u', 'v', 'w', 'x', 'y', 'z', ' ']
   end
 
   def convert_date
@@ -25,6 +27,19 @@ class Shift
   end
 
   def shift_message
+    array = []
+    @message.downcase.each_char do |character|
+      shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:a]))]
+        # shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:b]))]
+        # shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:c]))]
+        # shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:d]))]
+      array << shift_hash[character]
+    end
+    array
+  end
 
+  def a_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:a]))]
+    shift_hash[character]
   end
 end
