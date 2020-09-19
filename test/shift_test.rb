@@ -34,4 +34,19 @@ class ShiftTest < Minitest::Test
 
     assert_equal expected, shift.offset
   end
+
+  def test_total_shift_amount
+    shift = Shift.new
+    mock_expected = {:a => 1,
+                     :b => 2,
+                     :c => 3,
+                     :d => 4}
+    shift.stubs(:total_shift_amount).returns(mock_expected)
+    expected = {:a => 1,
+                :b => 2,
+                :c => 3,
+                :d => 4}
+
+    assert_equal expected, shift.total_shift_amount
+  end
 end
