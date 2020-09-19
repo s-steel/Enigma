@@ -14,6 +14,6 @@ class OffsetTest < Minitest::Test
   def test_create_offset_digits_from_date
     offset = Offset.new
 
-    assert_equal 0, offest.offet_digits_from_date 
+    assert_equal [6, 4, 0, 0], offset.offset_digits_from_date
   end
 end

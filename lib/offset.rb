@@ -11,6 +11,7 @@ class Offset
     Date.today.strftime('%d%m%y').to_i
   end
 
-
-
+  def offset_digits_from_date
+    (date ** 2).digits.reverse[-4..-1]
+  end
 end
