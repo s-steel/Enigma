@@ -17,5 +17,15 @@ class EnigmaTest < Minitest::Test
                 :key => '02715',
                 :date => '040895'}
     assert_equal expected, enigma.encrypt('hello world', '02715', '040895')
+
+    expected2 = {:encryption => 'jqnnqlurcog',
+                :key => '01020',
+                :date => '010203'}
+    assert_equal expected2, enigma.encrypt('Hello Space', '01020', '010203')
+
+    expected3 = {:encryption => '?l:b#l*b}',
+                :key => '01020',
+                :date => '010203'}
+    assert_equal expected3, enigma.encrypt('? : # * }', '01020', '010203')
   end
 end
