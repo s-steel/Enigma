@@ -23,9 +23,4 @@ class Shift
                   :c => @key[2..3].to_i + convert_date[2].to_i,
                   :d => @key[3..4].to_i + convert_date[3].to_i}
   end
-  # def total_shift_amount
-  #   @key.merge(@offset) do |letter, key, offset|
-  #     key + offset
-  #   end
-  # end
 end
