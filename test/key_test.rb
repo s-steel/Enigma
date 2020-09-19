@@ -18,12 +18,16 @@ class KeyTest < Minitest::Test
 
   def test_split_up_keys
     key = Key.new
-
-    expected = {:a => 12,
-                :b => 65,
-                :c => 21,
-                :d => 01}
+    random_1 = mock('1')
+    random_2 = mock('2')
+    random_3 = mock('3')
+    random_4 = mock('4')
+    expected = {:a => random_1,
+                :b => random_2,
+                :c => random_3,
+                :d => random_4}
+    key.stubs(:split_up_keys).returns(expected)
 
     assert_equal expected, key.split_up_keys
-  end 
+  end
 end
