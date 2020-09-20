@@ -6,7 +6,7 @@ class Shift
   attr_reader :message, :key, :date, :characters
   def initialize(message,
                  key = Key.new.key,
-                 date = Offset.new.offset)
+                 date = Date.today.strftime('%d%m%y'))
     @message = message
     @key = key
     @date = date
@@ -26,20 +26,20 @@ class Shift
                   :d => @key[3..4].to_i + convert_date[3].to_i}
   end
 
-  def shift_message
+  def encrypt_message
     encrypt_array = []
     index = 0
     @message.downcase.each_char do |character|
       if @characters.include?(character) == false
         encrypt_array << character
       elsif index == 0
-        encrypt_array << a_shift(character)
+        encrypt_array << encrypt_a_shift(character)
       elsif index == 1
-        encrypt_array << b_shift(character)
+        encrypt_array << encrypt_b_shift(character)
       elsif index == 2
-        encrypt_array << c_shift(character)
+        encrypt_array << encrypt_c_shift(character)
       elsif index == 3
-        encrypt_array << d_shift(character)
+        encrypt_array << encrypt_d_shift(character)
       else
         character
       end
@@ -49,23 +49,66 @@ class Shift
     encrypt_array.join
   end
 
-  def a_shift(character)
+  def encrypt_a_shift(character)
     shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:a]))]
     shift_hash[character]
   end
 
-  def b_shift(character)
+  def encrypt_b_shift(character)
     shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:b]))]
     shift_hash[character]
   end
 
-  def c_shift(character)
+  def encrypt_c_shift(character)
     shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:c]))]
     shift_hash[character]
   end
 
-  def d_shift(character)
+  def encrypt_d_shift(character)
     shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:d]))]
+    shift_hash[character]
+  end
+
+  def decrypt_message
+    decrypt_array = []
+    index = 0
+    @message.downcase.each_char do |character|
+      if @characters.include?(character) == false
+        decrypt_array << character
+      elsif index == 0
+        decrypt_array << decrypt_a_shift(character)
+      elsif index == 1
+        decrypt_array << decrypt_b_shift(character)
+      elsif index == 2
+        decrypt_array << decrypt_c_shift(character)
+      elsif index == 3
+        decrypt_array << decrypt_d_shift(character)
+      else
+        character
+      end
+      index += 1
+      index = 0 if index > 3
+    end
+    decrypt_array.join
+  end
+
+  def decrypt_a_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:a]))]
+    shift_hash[character]
+  end
+
+  def decrypt_b_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:b]))]
+    shift_hash[character]
+  end
+
+  def decrypt_c_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:c]))]
+    shift_hash[character]
+  end
+
+  def decrypt_d_shift(character)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:d]))]
     shift_hash[character]
   end
 end
