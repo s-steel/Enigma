@@ -10,6 +10,7 @@ class Enigma
   end
 
   def encrypt(message, key, date)
+  # def encrypt(message, key = @shift.key, date = @shift.date)
     @shift = Shift.new(message, key, date)
     encryption = Hash.new
     encryption[:encryption] = @shift.encrypt_message
