@@ -13,14 +13,12 @@ class ShiftTest < Minitest::Test
     assert_equal '040895', shift.date
 
     shift_2 = Shift.new('Hello World')
-    key_mock = mock('random key')
-    shift_2.stubs(:key).returns(key_mock)
-    date_mock = mock("today's date")
-    shift_2.stubs(:date).returns(date_mock)
+    shift_2.stubs(:key).returns('key_mock')
+    shift_2.stubs(:date).returns('date_mock')
 
     assert_equal 'Hello World', shift_2.message
-    assert_equal key_mock, shift_2.key
-    assert_equal date_mock, shift_2.date
+    assert_equal 'key_mock', shift_2.key
+    assert_equal 'date_mock', shift_2.date
   end
 
   def test_date_shift

@@ -25,6 +25,9 @@ class EnigmaTest < Minitest::Test
     assert_equal expected2, enigma2.encrypt('hello world', '02715')
 
     enigma3 = Enigma.new
+    random_key = mock('random key')
+    enigma3.stubs(:encrypt_message).returns(random_key)
+
     expected3 = {:encryption => 'mock this?',
                 :key => 'mock this?',
                 :date => '190920'}

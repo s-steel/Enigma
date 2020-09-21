@@ -14,9 +14,9 @@ class KeyTest < Minitest::Test
     key = Key.new
 
     assert_equal 5, key.random_five_digits.length
-    
-    key.stubs(:random_five_digits).returns('keys')
 
-    assert_equal 'keys', key.random_five_digits
+    key.stubs(:rand).returns('1')
+
+    assert_equal '11111', key.random_five_digits
   end
 end

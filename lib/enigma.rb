@@ -8,7 +8,6 @@ class Enigma
               :encryption,
               :decryption
   def initialize
-    # @message = message
     @key = Key.new.key
     @date = Offset.new.date
     @encryption = Hash.new
