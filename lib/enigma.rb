@@ -8,23 +8,27 @@ class Enigma
               :encryption,
               :decryption
   def initialize
-    @message = message
-    @key = key
-    @date = date
+    # @message = message
+    @key = Key.new.key
+    @date = Offset.new.date
     @encryption = Hash.new
     @decryption = Hash.new
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = @key, date = @date)
     @shift = Shift.new(message, key, date)
+    key = @key if key.length != 5
+    date = @date if date.length != 6
     @encryption[:encryption] = @shift.encrypt_message
     @encryption[:key] = key
     @encryption[:date] = date
     @encryption
   end
 
-  def decrypt(message, key, date)
+  def decrypt(message, key = @key, date = @date)
     @shift = Shift.new(message, key, date)
+    key = @key if key.length != 5
+    date = @date if date.length != 6
     @decryption[:decryption] = @shift.decrypt_message
     @decryption[:key] = key
     @decryption[:date] = date

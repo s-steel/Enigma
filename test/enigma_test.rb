@@ -18,15 +18,17 @@ class EnigmaTest < Minitest::Test
                 :date => '040895'}
     assert_equal expected, enigma.encrypt('hello world', '02715', '040895')
 
-    # expected2 = {:encryption => 'keder ohulw',
-    #             :key => '02715',
-    #             :date => '190920'}
-    # assert_equal expected2, enigma.encrypt('hello world', '02715')
-    #
-    # expected2 = {:encryption => 'mock this?',
-    #             :key => 'mock this?',
-    #             :date => '190920'}
-    # assert_equal expected2, enigma.encrypt('hello world')
+    enigma2 = Enigma.new
+    expected2 = {:encryption => 'pib wdmczpu',
+                :key => '02715',
+                :date => '210920'}
+    assert_equal expected2, enigma2.encrypt('hello world', '02715')
+
+    enigma3 = Enigma.new
+    expected3 = {:encryption => 'mock this?',
+                :key => 'mock this?',
+                :date => '190920'}
+    assert_equal expected3, enigma3.encrypt('hello world')
 
     expected3 = {:encryption => 'jqnnqlurcog!',
                 :key => '01020',
@@ -56,5 +58,16 @@ class EnigmaTest < Minitest::Test
                 :key => '01020',
                 :date => '010203'}
     assert_equal expected3, enigma.decrypt('?l:b#l*b}', '01020', '010203')
+
+    enigma2 = Enigma.new
+    expected4 = {:decryption => '? : # * }',
+                :key => '01020',
+                :date => '210920'}
+    assert_equal expected4, enigma2.decrypt('keder ohulw', '01020')
+
+    # enigma2 = Enigma.new
+    # enigma2.encrypt('hello world', '02715')
+
+
   end
 end

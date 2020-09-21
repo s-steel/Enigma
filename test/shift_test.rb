@@ -23,10 +23,10 @@ class ShiftTest < Minitest::Test
     assert_equal date_mock, shift_2.date
   end
 
-  def test_convert_date
+  def test_date_shift
     shift = Shift.new('Hello World', '02715', '040895')
 
-    assert_equal '1025', shift.convert_date
+    assert_equal '1025', shift.date_shift
   end
 
   def test_total_shift_amount
