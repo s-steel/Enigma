@@ -1,5 +1,5 @@
 require_relative 'key'
-require_relative 'offset'
+require_relative 'generate_date'
 require 'pry'
 
 class Shift
@@ -16,10 +16,10 @@ class Shift
   end
 
   def total_shift_amount
-    shift_hash = {:a => @key[0..1].to_i + date_shift[0].to_i,
-                  :b => @key[1..2].to_i + date_shift[1].to_i,
-                  :c => @key[2..3].to_i + date_shift[2].to_i,
-                  :d => @key[3..4].to_i + date_shift[3].to_i}
+    {:a => @key[0..1].to_i + date_shift[0].to_i,
+     :b => @key[1..2].to_i + date_shift[1].to_i,
+     :c => @key[2..3].to_i + date_shift[2].to_i,
+     :d => @key[3..4].to_i + date_shift[3].to_i}
   end
 
   def date_shift

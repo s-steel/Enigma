@@ -78,12 +78,12 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_decrypt_from_encryption_key
-      enigma = Enigma.new
-      encrypted = enigma.encrypt("hello world", "02715", '040895')
+    enigma = Enigma.new
+    encrypted = enigma.encrypt("hello world", "02715", '040895')
 
-      expected = {:decryption => 'hello world',
-                  :key => '02715',
-                  :date => '040895'}
-      assert_equal expected, enigma.decrypt(encrypted[:encryption], '02715', '040895')
-    end
+    expected = {:decryption => 'hello world',
+                :key => '02715',
+                :date => '040895'}
+    assert_equal expected, enigma.decrypt(encrypted[:encryption], '02715', '040895')
+  end
 end
