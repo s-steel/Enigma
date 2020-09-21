@@ -9,7 +9,7 @@ class Enigma
               :decryption
   def initialize
     @key = Key.new.key
-    @date = Offset.new.date
+    @date = GenerateDate.new.date
     @encryption = Hash.new
     @decryption = Hash.new
   end

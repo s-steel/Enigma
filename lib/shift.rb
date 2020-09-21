@@ -6,7 +6,7 @@ class Shift
   attr_reader :message, :key, :date, :characters
   def initialize(message,
                  key = Key.new.key,
-                 date = Offset.new.date)
+                 date = GenerateDate.new.date)
     @message = message
     @key = key
     @date = date
