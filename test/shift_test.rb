@@ -67,30 +67,6 @@ class ShiftTest < Minitest::Test
     assert_equal 'e', shift.encrypt_shift('l', :d)
   end
 
-  def test_encrypt_a_shift
-    shift = Shift.new('Hello World', '02715', '040895')
-
-    assert_equal 'k', shift.encrypt_a_shift('h')
-  end
-
-  def test_encrypt_b_shift
-    shift = Shift.new('Hello World', '02715', '040895')
-
-    assert_equal 'e', shift.encrypt_b_shift('e')
-  end
-
-  def test_encrypt_c_shift
-    shift = Shift.new('Hello World', '02715', '040895')
-
-    assert_equal 'd', shift.encrypt_c_shift('l')
-  end
-
-  def test_encrypt_d_shift
-    shift = Shift.new('Hello World', '02715', '040895')
-
-    assert_equal 'e', shift.encrypt_d_shift('l')
-  end
-
   def test_decrypt_message
     shift = Shift.new('keder ohulw', '02715', '040895')
     assert_equal 'hello world', shift.decrypt_message

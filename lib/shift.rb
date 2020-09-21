@@ -33,13 +33,13 @@ class Shift
       if @characters.include?(character) == false
         encrypt_array << character
       elsif index == 0
-        encrypt_array << encrypt_a_shift(character)
+        encrypt_array << encrypt_shift(character, :a)
       elsif index == 1
-        encrypt_array << encrypt_b_shift(character)
+        encrypt_array << encrypt_shift(character, :b)
       elsif index == 2
-        encrypt_array << encrypt_c_shift(character)
+        encrypt_array << encrypt_shift(character, :c)
       elsif index == 3
-        encrypt_array << encrypt_d_shift(character)
+        encrypt_array << encrypt_shift(character, :d)
       else
         character
       end
@@ -51,27 +51,6 @@ class Shift
 
   def encrypt_shift(character, key)
     shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[key]))]
-    shift_hash[character]
-  end
-
-
-  def encrypt_a_shift(character)
-    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:a]))]
-    shift_hash[character]
-  end
-
-  def encrypt_b_shift(character)
-    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:b]))]
-    shift_hash[character]
-  end
-
-  def encrypt_c_shift(character)
-    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:c]))]
-    shift_hash[character]
-  end
-
-  def encrypt_d_shift(character)
-    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[:d]))]
     shift_hash[character]
   end
 
