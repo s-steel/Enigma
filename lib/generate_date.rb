@@ -1,3 +1,5 @@
+require 'date'
+
 class GenerateDate
   attr_reader :date
   def initialize
