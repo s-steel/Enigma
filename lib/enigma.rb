@@ -28,8 +28,8 @@ class Enigma
   end
 
   def decrypt(message, key, date = @date)
+    date = @date if date.nil?
     @shift = Shift.new(message, key, date)
-    date = @date if (date.length != 6) || (date == nil)
     @decryption[:decryption] = @shift.decrypt_message
     @decryption[:key] = key
     @decryption[:date] = date

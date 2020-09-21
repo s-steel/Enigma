@@ -2,4 +2,4 @@ Hello World!
 
 Position U-boats along the south west coast of England.
 
-Move troops from Belgian boarded to the coast of Normandy.
+Move troops from Belgian boarder to the coast of Normandy.
