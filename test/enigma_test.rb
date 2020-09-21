@@ -65,9 +65,13 @@ class EnigmaTest < Minitest::Test
                 :date => '210920'}
     assert_equal expected4, enigma2.decrypt('keder ohulw', '01020')
 
-    # enigma2 = Enigma.new
-    # enigma2.encrypt('hello world', '02715')
+    enigma3 = Enigma.new
+    enigma3.encrypt('hello world', '02715', '040895')
 
+    expected5 = {:decryption => 'hello world',
+                :key => '02715',
+                :date => '040895'}
+    assert_equal expected5, enigma3.decrypt(encrypted[:encryption], '02715', '040895')
 
   end
 end
