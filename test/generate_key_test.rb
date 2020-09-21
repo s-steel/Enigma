@@ -1,5 +1,5 @@
 require './test/test_helper'
-require './lib/key'
+require './lib/generate_key'
 require 'pry'
 
 class KeyTest < Minitest::Test
