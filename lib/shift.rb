@@ -33,19 +33,11 @@ class Shift
     encrypt_array = []
     index = 0
     @message.downcase.each_char do |character|
-      if @characters.include?(character) == false
-        encrypt_array << character
-      elsif index == 0
-        encrypt_array << encrypt_shift(character, :a)
-      elsif index == 1
-        encrypt_array << encrypt_shift(character, :b)
-      elsif index == 2
-        encrypt_array << encrypt_shift(character, :c)
-      elsif index == 3
-        encrypt_array << encrypt_shift(character, :d)
-      else
-        character
-      end
+      encrypt_array << character if @characters.include?(character) == false
+      encrypt_array << encrypt_shift(character, :a) if index == 0
+      encrypt_array << encrypt_shift(character, :b) if index == 1
+      encrypt_array << encrypt_shift(character, :c) if index == 2
+      encrypt_array << encrypt_shift(character, :d) if index == 3
       index += 1
       index = 0 if index > 3
     end
