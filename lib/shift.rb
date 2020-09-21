@@ -61,13 +61,13 @@ class Shift
       if @characters.include?(character) == false
         decrypt_array << character
       elsif index == 0
-        decrypt_array << decrypt_a_shift(character)
+        decrypt_array << decrypt_shift(character, :a)
       elsif index == 1
-        decrypt_array << decrypt_b_shift(character)
+        decrypt_array << decrypt_shift(character, :b)
       elsif index == 2
-        decrypt_array << decrypt_c_shift(character)
+        decrypt_array << decrypt_shift(character, :c)
       elsif index == 3
-        decrypt_array << decrypt_d_shift(character)
+        decrypt_array << decrypt_shift(character, :d)
       else
         character
       end
@@ -77,23 +77,28 @@ class Shift
     decrypt_array.join
   end
 
-  def decrypt_a_shift(character)
-    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:a]))]
+  def decrypt_shift(character, key)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[key]))]
     shift_hash[character]
   end
-
-  def decrypt_b_shift(character)
-    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:b]))]
-    shift_hash[character]
-  end
-
-  def decrypt_c_shift(character)
-    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:c]))]
-    shift_hash[character]
-  end
-
-  def decrypt_d_shift(character)
-    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:d]))]
-    shift_hash[character]
-  end
+  #
+  # def decrypt_a_shift(character)
+  #   shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:a]))]
+  #   shift_hash[character]
+  # end
+  #
+  # def decrypt_b_shift(character)
+  #   shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:b]))]
+  #   shift_hash[character]
+  # end
+  #
+  # def decrypt_c_shift(character)
+  #   shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:c]))]
+  #   shift_hash[character]
+  # end
+  #
+  # def decrypt_d_shift(character)
+  #   shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[:d]))]
+  #   shift_hash[character]
+  # end
 end
