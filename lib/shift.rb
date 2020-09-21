@@ -53,19 +53,11 @@ class Shift
     decrypt_array = []
     index = 0
     @message.downcase.each_char do |character|
-      if @characters.include?(character) == false
-        decrypt_array << character
-      elsif index == 0
-        decrypt_array << decrypt_shift(character, :a)
-      elsif index == 1
-        decrypt_array << decrypt_shift(character, :b)
-      elsif index == 2
-        decrypt_array << decrypt_shift(character, :c)
-      elsif index == 3
-        decrypt_array << decrypt_shift(character, :d)
-      else
-        character
-      end
+      decrypt_array << character if @characters.include?(character) == false
+      decrypt_array << decrypt_shift(character, :a) if index == 0
+      decrypt_array << decrypt_shift(character, :b) if index == 1
+      decrypt_array << decrypt_shift(character, :c) if index == 2
+      decrypt_array << decrypt_shift(character, :d)if index == 3
       index += 1
       index = 0 if index > 3
     end
