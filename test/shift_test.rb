@@ -59,9 +59,12 @@ class ShiftTest < Minitest::Test
   end
 
   def test_encrypt_shift
-    shift.Shift.new('Hello World', '02715', '040895')
+    shift = Shift.new('Hello World', '02715', '040895')
 
-    assert_equal [3, 27, 73, 20], shift.encrypt_shift
+    assert_equal 'k', shift.encrypt_shift('h', :a)
+    assert_equal 'e', shift.encrypt_shift('e', :b)
+    assert_equal 'd', shift.encrypt_shift('l', :c)
+    assert_equal 'e', shift.encrypt_shift('l', :d)
   end
 
   def test_encrypt_a_shift

@@ -49,6 +49,10 @@ class Shift
     encrypt_array.join
   end
 
+  def encrypt_shift(character, key)
+    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[key]))]
+    shift_hash[character]
+  end
 
 
   def encrypt_a_shift(character)
