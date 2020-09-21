@@ -66,20 +66,24 @@ class EnigmaTest < Minitest::Test
                 :key => '01020',
                 :date => '010203'}
     assert_equal expected3, enigma.decrypt('?l:b#l*b}', '01020', '010203')
-
-    enigma2 = Enigma.new
-    expected4 = {:decryption => '? : # * }',
-                :key => '01020',
-                :date => '210920'}
-    assert_equal expected4, enigma2.decrypt('keder ohulw', '01020')
-
-    enigma3 = Enigma.new
-    enigma3.encrypt('hello world', '02715', '040895')
-
-    expected5 = {:decryption => 'hello world',
-                :key => '02715',
-                :date => '040895'}
-    assert_equal expected5, enigma3.decrypt(encrypted[:encryption], '02715', '040895')
-
   end
+
+  def test_decrypt_without_date
+    enigma = Enigma.new
+    expected = {:decryption => 'mock',
+                :key => '01020',
+                :date => 'mock'}
+    enigma.stubs(:decrypt).returns(expected)
+    assert_equal expected, enigma.decrypt('keder ohulw', '01020')
+  end
+
+  def test_decrypt_from_encryption_key
+      enigma = Enigma.new
+      encrypted = enigma.encrypt("hello world", "02715", '040895')
+
+      expected = {:decryption => 'hello world',
+                  :key => '02715',
+                  :date => '040895'}
+      assert_equal expected, enigma.decrypt(encrypted[:encryption], '02715', '040895')
+    end
 end
