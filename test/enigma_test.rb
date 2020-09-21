@@ -18,21 +18,6 @@ class EnigmaTest < Minitest::Test
                 :date => '040895'}
     assert_equal expected, enigma.encrypt('hello world', '02715', '040895')
 
-    enigma2 = Enigma.new
-    expected2 = {:encryption => 'pib wdmczpu',
-                :key => '02715',
-                :date => '210920'}
-    assert_equal expected2, enigma2.encrypt('hello world', '02715')
-
-    enigma3 = Enigma.new
-    random_key = mock('random key')
-    enigma3.stubs(:encrypt_message).returns(random_key)
-
-    expected3 = {:encryption => 'mock this?',
-                :key => 'mock this?',
-                :date => '190920'}
-    assert_equal expected3, enigma3.encrypt('hello world')
-
     expected3 = {:encryption => 'jqnnqlurcog!',
                 :key => '01020',
                 :date => '010203'}
@@ -42,6 +27,26 @@ class EnigmaTest < Minitest::Test
                 :key => '01020',
                 :date => '010203'}
     assert_equal expected4, enigma.encrypt('? : # * }', '01020', '010203')
+  end
+
+  def test_encrypt_without_date
+    enigma = Enigma.new
+    expected = {:encryption => 'mock',
+                :key => '02715',
+                :date => 'mock'}
+    enigma.stubs(:encrypt).returns(expected)
+
+    assert_equal expected, enigma.encrypt('hello world', '02715')
+  end
+
+  def test_encrypt_without_key_or_date
+    enigma = Enigma.new
+    expected = {:encryption => 'mock',
+                :key => 'mock',
+                :date => 'mock'}
+    enigma.stubs(:encrypt).returns(expected)
+
+    assert_equal expected, enigma.encrypt('hello world')
   end
 
   def test_decrypt
