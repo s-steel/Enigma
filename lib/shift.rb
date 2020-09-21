@@ -26,6 +26,11 @@ class Shift
     (@date.to_i ** 2).digits.reverse[-4..-1].join.to_s
   end
 
+  def encrypt_shift(character, shift_key)
+    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[shift_key]))]
+    shift_hash[character]
+  end
+
   def encrypt_message
     encrypt_array = []
     index = 0
@@ -49,8 +54,8 @@ class Shift
     encrypt_array.join
   end
 
-  def encrypt_shift(character, key)
-    shift_hash = Hash[@characters.zip(@characters.rotate(total_shift_amount[key]))]
+  def decrypt_shift(character, shift_key)
+    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[shift_key]))]
     shift_hash[character]
   end
 
@@ -75,10 +80,5 @@ class Shift
       index = 0 if index > 3
     end
     decrypt_array.join
-  end
-
-  def decrypt_shift(character, key)
-    shift_hash = Hash[@characters.zip(@characters.rotate(-total_shift_amount[key]))]
-    shift_hash[character]
   end
 end
