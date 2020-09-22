@@ -3,7 +3,7 @@ require './lib/shift'
 
 class ShiftTest < Minitest::Test
 
-  def test_it_exists
+  def test_it_has_attributes
     shift = Shift.new('Hello World', '02715', '040895')
 
     assert_instance_of Shift, shift
@@ -42,6 +42,10 @@ class ShiftTest < Minitest::Test
     shift = Shift.new('Hello World', '02715', '040895')
 
     assert_equal '1025', shift.date_shift
+
+    shift2 = Shift.new('Hello World', '02715', '010101')
+
+    assert_equal '0201', shift2.date_shift
   end
 
   def test_total_shift_amount
