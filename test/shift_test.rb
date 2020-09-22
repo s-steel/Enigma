@@ -21,6 +21,16 @@ class ShiftTest < Minitest::Test
     assert_equal 'date_mock', shift_2.date
   end
 
+  def test_generate_key
+     shift = Shift.new('Hello World')
+
+     assert_equal 5, shift.generate_key.length
+
+     shift.stubs(:rand).returns('1')
+
+     assert_equal '11111', shift.generate_key
+   end
+
   def test_date_shift
     shift = Shift.new('Hello World', '02715', '040895')
 
