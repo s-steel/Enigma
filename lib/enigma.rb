@@ -5,6 +5,7 @@ require 'pry'
 
 class Enigma
   include GenerateDate
+  include GenerateKey
   attr_reader :message,
               :key,
               :date,
@@ -12,7 +13,7 @@ class Enigma
               :decryption,
               :shift
   def initialize
-    @key = Key.new.key
+    @key = generate_key
     @date = generate_date
     @encryption = Hash.new
     @decryption = Hash.new

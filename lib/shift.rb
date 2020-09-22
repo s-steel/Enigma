@@ -4,9 +4,10 @@ require 'pry'
 
 class Shift
   include GenerateDate
+  include GenerateKey
   attr_reader :message, :key, :date, :characters
   def initialize(message,
-                 key = Key.new.key,
+                 key = generate_key,
                  date = generate_date)
     @message = message
     @key = key
