@@ -3,10 +3,11 @@ require_relative 'generate_date'
 require 'pry'
 
 class Shift
+  include GenerateDate
   attr_reader :message, :key, :date, :characters
   def initialize(message,
                  key = Key.new.key,
-                 date = GenerateDate.new.date)
+                 date = generate_date)
     @message = message
     @key = key
     @date = date

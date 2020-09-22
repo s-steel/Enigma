@@ -4,6 +4,7 @@ require_relative 'generate_date'
 require 'pry'
 
 class Enigma
+  include GenerateDate
   attr_reader :message,
               :key,
               :date,
@@ -12,7 +13,7 @@ class Enigma
               :shift
   def initialize
     @key = Key.new.key
-    @date = GenerateDate.new.date
+    @date = generate_date
     @encryption = Hash.new
     @decryption = Hash.new
   end

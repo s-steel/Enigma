@@ -1,8 +1,8 @@
 require 'date'
 
-class GenerateDate
-  attr_reader :date
-  def initialize
-    @date = Date.today.strftime('%d%m%y')
+module GenerateDate
+
+  def generate_date
+    Date.today.strftime('%d%m%y')
   end
 end
