@@ -1,10 +1,9 @@
 require './test/test_helper'
 require './lib/shift'
-require 'pry'
 
 class ShiftTest < Minitest::Test
 
-  def test_it_exists
+  def test_it_has_attributes
     shift = Shift.new('Hello World', '02715', '040895')
 
     assert_instance_of Shift, shift
@@ -13,20 +12,40 @@ class ShiftTest < Minitest::Test
     assert_equal '040895', shift.date
 
     shift_2 = Shift.new('Hello World')
-    key_mock = mock('random key')
-    shift_2.stubs(:key).returns(key_mock)
-    date_mock = mock("today's date")
-    shift_2.stubs(:date).returns(date_mock)
+    shift_2.stubs(:key).returns('key_mock')
+    shift_2.stubs(:date).returns('date_mock')
 
     assert_equal 'Hello World', shift_2.message
-    assert_equal key_mock, shift_2.key
-    assert_equal date_mock, shift_2.date
+    assert_equal 'key_mock', shift_2.key
+    assert_equal 'date_mock', shift_2.date
   end
 
-  def test_convert_date
+  def test_generate_key
+     shift = Shift.new('Hello World')
+
+     assert_equal 5, shift.generate_key.length
+
+     shift.stubs(:rand).returns('1')
+
+     assert_equal '11111', shift.generate_key
+   end
+
+   def test_generate_date
+      shift = Shift.new('Hello World')
+
+      assert_equal 6, shift.generate_date.length
+
+      assert_equal Date.today.strftime('%d%m%y'), shift.generate_date
+    end
+
+  def test_date_shift
     shift = Shift.new('Hello World', '02715', '040895')
 
-    assert_equal '1025', shift.convert_date
+    assert_equal '1025', shift.date_shift
+
+    shift2 = Shift.new('Hello World', '02715', '010101')
+
+    assert_equal '0201', shift2.date_shift
   end
 
   def test_total_shift_amount
@@ -60,28 +79,13 @@ class ShiftTest < Minitest::Test
     assert_equal '?l:b#l*b}', shift_4.encrypt_message
   end
 
-  def test_encrypt_a_shift
+  def test_encrypt_shift
     shift = Shift.new('Hello World', '02715', '040895')
 
-    assert_equal 'k', shift.encrypt_a_shift('h')
-  end
-
-  def test_encrypt_b_shift
-    shift = Shift.new('Hello World', '02715', '040895')
-
-    assert_equal 'e', shift.encrypt_b_shift('e')
-  end
-
-  def test_encrypt_c_shift
-    shift = Shift.new('Hello World', '02715', '040895')
-
-    assert_equal 'd', shift.encrypt_c_shift('l')
-  end
-
-  def test_encrypt_d_shift
-    shift = Shift.new('Hello World', '02715', '040895')
-
-    assert_equal 'e', shift.encrypt_d_shift('l')
+    assert_equal 'k', shift.encrypt_shift('h', :a)
+    assert_equal 'e', shift.encrypt_shift('e', :b)
+    assert_equal 'd', shift.encrypt_shift('l', :c)
+    assert_equal 'e', shift.encrypt_shift('l', :d)
   end
 
   def test_decrypt_message
@@ -98,27 +102,12 @@ class ShiftTest < Minitest::Test
     assert_equal '? : # * }', shift_4.decrypt_message
   end
 
-  def test_decrypt_a_shift
+  def test_decrypt_shift
     shift = Shift.new('keder ohulw', '02715', '040895')
 
-    assert_equal 'h', shift.decrypt_a_shift('k')
-  end
-
-  def test_decrypt_b_shift
-    shift = Shift.new('keder ohulw', '02715', '040895')
-
-    assert_equal 'e', shift.decrypt_b_shift('e')
-  end
-
-  def test_decrypt_c_shift
-    shift = Shift.new('keder ohulw', '02715', '040895')
-
-    assert_equal 'l', shift.decrypt_c_shift('d')
-  end
-
-  def test_decrypt_d_shift
-    shift = Shift.new('keder ohulw', '02715', '040895')
-
-    assert_equal 'l', shift.decrypt_d_shift('e')
+    assert_equal 'h', shift.decrypt_shift('k', :a)
+    assert_equal 'e', shift.decrypt_shift('e', :b)
+    assert_equal 'l', shift.decrypt_shift('d', :c)
+    assert_equal 'l', shift.decrypt_shift('e', :d)
   end
 end
