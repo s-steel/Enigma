@@ -3,10 +3,15 @@ require './lib/enigma'
 
 class EnigmaTest < Minitest::Test
 
-  def test_it_exists
+  def test_it_has_attributes
     enigma = Enigma.new
-
     assert_instance_of Enigma, enigma
+
+    expected = {}
+    assert_equal expected, enigma.encryption
+    assert_equal expected, enigma.decryption
+    assert_nil enigma.date
+    assert_nil enigma.key
   end
 
   def test_encrypt

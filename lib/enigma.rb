@@ -9,27 +9,26 @@ class Enigma
               :key,
               :date,
               :encryption,
-              :decryption,
-              :shift
+              :decryption
   def initialize
-    @key = generate_key
-    @date = generate_date
+    @key = key
+    @date = date
     @encryption = Hash.new
     @decryption = Hash.new
   end
 
-  def encrypt(message, key = @key, date = @date)
+  def encrypt(message, key = generate_key, date = generate_date)
     @shift = Shift.new(message, key, date)
-    key = @key if key.length != 5
-    date = @date if date.length != 6
+    key = generate_key if key.length != 5
+    date = generate_date if date.length != 6
     @encryption[:encryption] = @shift.encrypt_message
     @encryption[:key] = key
     @encryption[:date] = date
     @encryption
   end
 
-  def decrypt(message, key, date = @date)
-    date = @date if date.nil?
+  def decrypt(message, key, date = generate_date)
+    date = generate_date if date.nil?
     @shift = Shift.new(message, key, date)
     @decryption[:decryption] = @shift.decrypt_message
     @decryption[:key] = key
