@@ -1,6 +1,5 @@
 require_relative 'generate_key'
 require_relative 'generate_date'
-require 'pry'
 
 class Shift
   include GenerateDate

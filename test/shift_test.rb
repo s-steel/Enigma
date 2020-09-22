@@ -1,6 +1,5 @@
 require './test/test_helper'
 require './lib/shift'
-require 'pry'
 
 class ShiftTest < Minitest::Test
 
@@ -30,6 +29,14 @@ class ShiftTest < Minitest::Test
 
      assert_equal '11111', shift.generate_key
    end
+
+   def test_generate_date
+      shift = Shift.new('Hello World')
+
+      assert_equal 6, shift.generate_date.length
+
+      assert_equal Date.today.strftime('%d%m%y'), shift.generate_date
+    end
 
   def test_date_shift
     shift = Shift.new('Hello World', '02715', '040895')
